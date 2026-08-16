@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{base_url}}/api/v1/auth/login"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"email\": \"test@example.com\",\r
+
+    \    \"password\": \"password\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "const data = pm.response.json();\r
+
+      pm.environment.set(\"access_token\", data.data.token);"
+    language: text/javascript
+settings:
+  disabledSystemHeaders: []
+order: 1786886460198
