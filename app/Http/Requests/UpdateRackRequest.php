@@ -17,7 +17,12 @@ class UpdateRackRequest extends FormRequest
         $rackId = $this->route('rack');
 
         return [
-            'code' => ['required', 'string', 'max:50', Rule::unique('dc_racks', 'code')->ignore($rackId)],
+            'code' => [
+                'required', 'string', 'max:50',
+                Rule::unique('dc_racks', 'code')
+                    ->where('room_id', $rackId->room_id)
+                    ->ignore($rackId),
+            ],
             'name' => ['required', 'string', 'max:255'],
             'u_height' => ['required', 'integer'],
             'max_power_kw' => ['nullable', 'numeric'],
