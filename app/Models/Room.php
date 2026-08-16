@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 
+#[Fillable(['code', 'name', 'floor', 'area_sqm', 'status'])]
 class Room extends Model
 {
     protected $table = 'dc_rooms';
