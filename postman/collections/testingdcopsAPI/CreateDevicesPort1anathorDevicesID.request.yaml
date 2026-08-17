@@ -1,0 +1,24 @@
+$kind: http-request
+name: CreateDevicesPort1anathorDevicesID
+url: "{{base_url}}/api/v1/devices/2/ports"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+  Content-Type: application/json
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"eth0\",\r
+
+    \    \"type\": \"ethernet\",\r
+
+    \    \"speed_mbps\": 1000,\r
+
+    \    \"mac_address\": \"00:1A:2B:3C:4E:01\",\r
+
+    \    \"status\": \"active\"\r
+
+    }"
+order: 22000
