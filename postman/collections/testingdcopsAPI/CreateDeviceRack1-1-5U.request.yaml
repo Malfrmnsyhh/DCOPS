@@ -1,0 +1,35 @@
+$kind: http-request
+name: CreateDeviceRack1-1-5U
+url: "{{base_url}}/api/v1/device"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"device_type_id\": 2,\r
+
+    \    \"hostname\": \"sw-access-02\",\r
+
+    \    \"serial_number\": \"SN-SW-003\",\r
+
+    \    \"manufacturer\": \"Cisco\",\r
+
+    \    \"model\": \"Catalyst 9400\",\r
+
+    \    \"rack_id\": 1,\r
+
+    \    \"position_u\": 6,\r
+
+    \    \"u_size\": 3,\r
+
+    \    \"power_watt\": 120,\r
+
+    \    \"status\": \"active\",\r
+
+    \    \"installed_at\": \"2026-08-17\"\r
+
+    }"
+order: 17846

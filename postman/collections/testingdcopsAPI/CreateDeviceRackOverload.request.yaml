@@ -1,0 +1,35 @@
+$kind: http-request
+name: CreateDeviceRackOverload
+url: "{{base_url}}/api/v1/device"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"device_type_id\": 1,\r
+
+    \    \"hostname\": \"srv-overflow-01\",\r
+
+    \    \"serial_number\": \"SN-OVR-001\",\r
+
+    \    \"manufacturer\": \"Dell\",\r
+
+    \    \"model\": \"PowerEdge R740\",\r
+
+    \    \"rack_id\": 1,\r
+
+    \    \"position_u\": 41,\r
+
+    \    \"u_size\": 4,\r
+
+    \    \"power_watt\": 400,\r
+
+    \    \"status\": \"active\",\r
+
+    \    \"installed_at\": \"2026-08-17\"\r
+
+    }"
+order: 18000

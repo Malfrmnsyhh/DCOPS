@@ -1,0 +1,8 @@
+$kind: http-request
+name: GetRack
+url: "{{base_url}}/api/v1/racks/3"
+method: GET
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+order: 13000
