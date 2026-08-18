@@ -36,5 +36,37 @@ class DeviceSlotService
 
         return null;
     }
+
+    /**
+     * Susun peta isi rack per slot U (dari U1 sampai u_height), buat endpoint elevation.
+     */
+    public function buildElevation(Rack $rack): array
+    {
+        $devices = Device::query()
+            ->where('rack_id', $rack->id)
+            ->whereNotNull('position_u')
+            ->get(['id', 'hostname', 'position_u', 'u_size', 'status']);
+
+        $slots = [];
+
+        for ($u = 1; $u <= $rack->u_height; $u++) {
+            $occupant = $devices->first(
+                fn (Device $device) => $u >= $device->position_u && $u <= ($device->position_u + $device->u_size - 1)
+            );
+
+            $slots[] = [
+                'position_u' => $u,
+                'device' => $occupant ? [
+                    'id' => $occupant->id,
+                    'hostname' => $occupant->hostname,
+                    'u_size' => $occupant->u_size,
+                    'status' => $occupant->status,
+                    'is_start' => $u === $occupant->position_u,
+                ] : null,
+            ];
+        }
+
+        return $slots;
+    }
 }
 ?>

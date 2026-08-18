@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateRackRequest;
 use App\Http\Resources\RackResource;
 use App\Models\Room;
 use App\Models\Rack;
+use App\Services\DeviceSlotService;
 
 class RackController extends Controller
 {
@@ -38,6 +39,18 @@ class RackController extends Controller
     {
         $rack->delete();
         return response()->json(null, 204);
+    }
+
+    public function elevation(Rack $rack, DeviceSlotService $slotService)
+    {
+        return response()->json([
+            'data' => [
+                'rack_id' => $rack->id,
+                'code' => $rack->code,
+                'u_height' => $rack->u_height,
+                'slots' => $slotService->buildElevation($rack),
+            ],
+        ]);
     }
 }
 ?>

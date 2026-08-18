@@ -21,6 +21,7 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('sites', SiteController::class);
         Route::apiResource('sites.rooms', RoomController::class)->shallow();
         Route::apiResource('rooms.racks', RackController::class)->shallow();
+        Route::get('racks/{rack}/elevation', [RackController::class, 'elevation']);
 
         Route::apiResource('device-types', DeviceTypeController::class);
         Route::apiResource('devices', DeviceController::class);
