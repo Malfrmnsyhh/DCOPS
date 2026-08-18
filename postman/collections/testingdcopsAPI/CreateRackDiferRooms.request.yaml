@@ -1,0 +1,23 @@
+$kind: http-request
+name: CreateRackDiferRooms
+url: "{{base_url}}/api/v1/rooms/2/racks"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"code\": \"RCK-001\",\r
+
+    \    \"name\": \"Rack Server Room 2\",\r
+
+    \    \"u_height\": 42,\r
+
+    \    \"max_power_kw\": 3.4,\r
+
+    \    \"status\": \"active\"\r
+
+    }"
+order: 12000

@@ -1,0 +1,23 @@
+$kind: http-request
+name: CreateSite
+url: "{{base_url}}/api/v1/sites"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"code\": \"ST-004\",\r
+
+    \    \"name\": \"Site Jombang\",\r
+
+    \    \"address\": \"Jl Raya Menganto\",\r
+
+    \    \"city\": \"Jombang\",\r
+
+    \    \"status\": \"active\"\r
+
+    }"
+order: 8000

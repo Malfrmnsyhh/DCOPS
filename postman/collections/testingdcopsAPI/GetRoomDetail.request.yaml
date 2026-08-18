@@ -1,0 +1,8 @@
+$kind: http-request
+name: GetRoomDetail
+url: "{{base_url}}/api/v1/sites/4/rooms"
+method: GET
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+order: 7000

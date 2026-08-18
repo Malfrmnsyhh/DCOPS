@@ -1,0 +1,8 @@
+$kind: http-request
+name: auth/me
+url: "{{base_url}}/api/v1/auth/me"
+method: GET
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+order: 3000

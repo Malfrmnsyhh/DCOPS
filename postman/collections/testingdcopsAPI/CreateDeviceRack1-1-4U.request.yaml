@@ -1,0 +1,35 @@
+$kind: http-request
+name: CreateDeviceRack1-1-4U
+url: "{{base_url}}/api/v1/device"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"device_type_id\": 1,\r
+
+    \    \"hostname\": \"srv-storage-main\",\r
+
+    \    \"serial_number\": \"SN-STR-001\",\r
+
+    \    \"manufacturer\": \"Dell\",\r
+
+    \    \"model\": \"PowerVault ME5024\",\r
+
+    \    \"rack_id\": 1,\r
+
+    \    \"position_u\": 1,\r
+
+    \    \"u_size\": 4,\r
+
+    \    \"power_watt\": 600,\r
+
+    \    \"status\": \"active\",\r
+
+    \    \"installed_at\": \"2026-08-17\"\r
+
+    }"
+order: 38000

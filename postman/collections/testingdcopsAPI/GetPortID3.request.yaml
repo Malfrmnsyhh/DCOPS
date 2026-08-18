@@ -1,0 +1,29 @@
+$kind: http-request
+name: GetPortID3
+url: "{{base_url}}/api/v1/port-connections/3"
+method: GET
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"from_port_id\": 1,\r
+
+    \    \"to_port_id\": 3,\r
+
+    \    \"cable_type\": \"cat6\",\r
+
+    \    \"cable_label\": \"CBL-SRV1-SW1-01-REVISED\",\r
+
+    \    \"length_m\":12.9,\r
+
+    \    \"status\": \"connected\"\r
+
+    }\r
+
+    // Update Koneksi Tanpa Mengubah Port (Status: 200)\r
+
+    // Mengupdate cable_label pada Koneksi ID 1 tanpa mengubah ID port."
+order: 33000

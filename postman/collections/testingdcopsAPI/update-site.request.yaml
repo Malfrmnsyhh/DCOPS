@@ -1,4 +1,19 @@
 $kind: http-request
-url: ""
-method: GET
-order: 4364192572794910
+name: update-site
+url: "{{base_url}}/api/v1/sites/4/rooms"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"code\": \"R-01\",\r
+
+    \    \"name\": \"Server RSUD Jombang\",\r
+
+    \    \"status\": \"active\"\r
+
+    }\r\n"
+order: 6000
