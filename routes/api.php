@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\RackController;
 use App\Http\Controllers\Api\DeviceTypeController;
 use App\Http\Controllers\Api\DeviceController;
 use App\Http\Controllers\Api\DevicePortController;
+use App\Http\Controllers\Api\PortConnectionController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('device-types', DeviceTypeController::class);
         Route::apiResource('devices', DeviceController::class);
         Route::apiResource('devices.ports', DevicePortController::class)->shallow();
+        Route::apiResource('port-connections', PortConnectionController::class);
 
     });
 });

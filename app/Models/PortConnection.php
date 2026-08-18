@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 
+#[Fillable(['from_port_id', 'to_port_id', 'cable_type', 'cable_label', 'length_m'])]
 class PortConnection extends Model
 {
+    use HasFactory;
+
     protected $table = 'dc_port_connections';
 
     public function fromPort(): BelongsTo

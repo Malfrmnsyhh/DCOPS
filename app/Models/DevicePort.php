@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 #[Fillable(['name','type','speed_mbps','mac_address','status'])]
 class DevicePort extends Model
 {
+    use HasFactory;
+
     protected $table = 'dc_device_ports';
 
     public function device(): BelongsTo

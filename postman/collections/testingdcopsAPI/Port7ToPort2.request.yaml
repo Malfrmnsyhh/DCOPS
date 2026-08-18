@@ -1,0 +1,30 @@
+$kind: http-request
+name: Port7ToPort2
+url: "{{base_url}}/api/v1/port-connections"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"from_port_id\": 7,\r
+
+    \    \"to_port_id\": 2,\r
+
+    \    \"cable_type\": \"cat6\",\r
+
+    \    \"cable_label\": \"CBL-SRV1-SW1-01\",\r
+
+    \    \"length_m\":7.2,\r
+
+    \    \"status\": \"connected\"\r
+
+    }\r
+
+    // Sambungkan Port Terpakai sebagai to_port_id (Status: 422)\r
+
+    // Menggunakan Port A (ID 2 yang posisinya di Skenario 1 adalah from_port)
+    sekarang dipasang sebagai to_port_id.?"
+order: 35000

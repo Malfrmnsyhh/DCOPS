@@ -1,0 +1,25 @@
+$kind: http-request
+name: Port2oPort7
+url: "{{base_url}}/api/v1/port-connections"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"from_port_id\": 2,\r
+
+    \    \"to_port_id\": 7,\r
+
+    \    \"cable_type\": \"cat6\",\r
+
+    \    \"cable_label\": \"CBL-SRV1-SW1-01\",\r
+
+    \    \"length_m\":10.0,\r
+
+    \    \"status\": \"connected\"\r
+
+    }"
+order: 36000
