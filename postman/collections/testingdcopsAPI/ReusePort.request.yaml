@@ -26,4 +26,4 @@ body:
     // Update Koneksi Tanpa Mengubah Port (Status: 200)\r
 
     // Mengupdate cable_label pada Koneksi ID 1 tanpa mengubah ID port."
-order: 31513
+order: 31000

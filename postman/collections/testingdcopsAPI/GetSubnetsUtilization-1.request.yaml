@@ -1,0 +1,11 @@
+$kind: http-request
+name: GetSubnetsUtilization
+url: "{{base_url}}/api/v1/ip-addresses/6/release"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: ""
+order: 38956

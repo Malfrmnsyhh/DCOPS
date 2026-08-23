@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\DeviceTypeController;
 use App\Http\Controllers\Api\DeviceController;
 use App\Http\Controllers\Api\DevicePortController;
 use App\Http\Controllers\Api\PortConnectionController;
+use App\Http\Controllers\Api\SubnetController;
+use App\Http\Controllers\Api\IpAddressController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -27,8 +29,11 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('devices', DeviceController::class);
         Route::apiResource('devices.ports', DevicePortController::class)->shallow();
         Route::apiResource('port-connections', PortConnectionController::class);
-
+        Route::apiResource('subnets', SubnetController::class);
+        Route::get('subnets/{subnet}/utilization', [SubnetController::class, 'utilization']);
+        Route::get('subnets/{subnet}/ip-addresses', [IpAddressController::class, 'index']);
+        Route::get('ip-addresses/{ip_address}', [IpAddressController::class, 'show']);
+        Route::post('ip-addresses/{ip_address}/assign', [IpAddressController::class, 'assign']);
+        Route::post('ip-addresses/{ip_address}/release', [IpAddressController::class, 'release']);
     });
 });
-
-?>

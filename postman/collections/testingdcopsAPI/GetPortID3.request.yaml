@@ -1,6 +1,6 @@
 $kind: http-request
 name: GetPortID3
-url: "{{base_url}}/api/v1/port-connections/3"
+url: "{{base_url}}/api/v1/port-connections/2"
 method: GET
 headers:
   Accept: application/json

@@ -1,0 +1,17 @@
+$kind: http-request
+name: AssignIpToPortID
+url: "{{base_url}}/api/v1/ip-addresses/6/assign"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"device_port_id\": 2,\r
+
+    \    \"hostname\": \"server-mysql-01\"\r
+
+    }"
+order: 41000
