@@ -1,0 +1,21 @@
+$kind: http-request
+name: CreateAlarmRule
+url: "{{base_url}}/api/v1/alarm-rule"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Invalid Rule\",\r
+
+    \    \"operator\": \">\",\r
+
+    \    \"threshold_max\": 30,\r
+
+    \    \"severity\": \"critical\"\r
+
+    }"
+order: 42000

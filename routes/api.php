@@ -10,7 +10,8 @@ use App\Http\Controllers\Api\DevicePortController;
 use App\Http\Controllers\Api\PortConnectionController;
 use App\Http\Controllers\Api\SubnetController;
 use App\Http\Controllers\Api\IpAddressController;
-
+use App\Http\Controllers\Api\SensorController;
+use App\Http\Controllers\Api\AlarmRuleController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
@@ -35,5 +36,7 @@ Route::prefix('v1')->group(function () {
         Route::get('ip-addresses/{ip_address}', [IpAddressController::class, 'show']);
         Route::post('ip-addresses/{ip_address}/assign', [IpAddressController::class, 'assign']);
         Route::post('ip-addresses/{ip_address}/release', [IpAddressController::class, 'release']);
+        Route::apiResource('racks.sensors', SensorController::class)->shallow();
+        Route::apiResource('alarm-rules', AlarmRuleController::class);
     });
 });
