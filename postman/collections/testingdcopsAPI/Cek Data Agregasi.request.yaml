@@ -1,0 +1,13 @@
+$kind: http-request
+name: Cek Data Agregasi
+url: "{{base_url}}/api/v1/sensors/1/readings?aggregate=hourly"
+method: GET
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+queryParams:
+  aggregate: hourly
+body:
+  type: json
+  content: ""
+order: 56000
