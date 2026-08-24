@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\IpAddressController;
 use App\Http\Controllers\Api\SensorController;
 use App\Http\Controllers\Api\AlarmRuleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AlarmController;
 
 Route::prefix('v1')->group(function () {
     Route::post('/auth/login', [AuthController::class, 'login']);
@@ -38,5 +39,9 @@ Route::prefix('v1')->group(function () {
         Route::post('ip-addresses/{ip_address}/release', [IpAddressController::class, 'release']);
         Route::apiResource('racks.sensors', SensorController::class)->shallow();
         Route::apiResource('alarm-rules', AlarmRuleController::class);
+        Route::get('sensors/{sensor}/readings', [SensorController::class, 'readings']);
+        Route::get('alarms', [AlarmController::class, 'index']);
+        Route::post('alarms/{alarm}/acknowledge', [AlarmController::class, 'acknowledge']);
+        Route::post('alarms/{alarm}/resolve', [AlarmController::class, 'resolve']);
     });
 });

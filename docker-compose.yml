@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  db_dcops:
+    image: mysql:8.0
+    container_name: dcops-mysql-container
+    restart: always
+    environment:
+      MYSQL_DATABASE: DBdcops
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - dcops_db_data:/var/lib/mysql
+
+volumes:
+  dcops_db_data:
