@@ -21,11 +21,16 @@ class GenerateSensorReadings extends Command
             $value = $this->generateValue($sensor->type);
             $now = now();
 
-            SensorReading::create([
-                'sensor_id' => $sensor->id,
-                'value' => $value,
-                'recorded_at' => $now,
-            ]);
+            try {
+                SensorReading::create([
+                    'sensor_id' => $sensor->id,
+                    'value' => $value,
+                    'recorded_at' => $now,
+                ]);
+            } catch (\Illuminate\Database\UniqueConstraintViolationException) {
+                $this->warn("Sensor {$sensor->code}: reading di detik ini sudah ada, dilewati.");
+                continue;
+            }
 
             $sensor->update(['last_reading_at' => $now]);
 

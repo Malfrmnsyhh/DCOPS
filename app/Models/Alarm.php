@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable('alarm_rulr_id', 'sensor_id', 'triggered_value', 'severity', 'status', 'triggered_at', 'acknowledged_by', 'resolved_at')]
+#[Fillable('alarm_rule_id', 'sensor_id', 'triggered_value', 'severity', 'status', 'triggered_at', 'acknowledged_by', 'resolved_at')]
 class Alarm extends Model
 {
     use HasFactory;
