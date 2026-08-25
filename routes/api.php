@@ -14,6 +14,9 @@ use App\Http\Controllers\Api\SensorController;
 use App\Http\Controllers\Api\AlarmRuleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AlarmController;
+use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\TicketCommentController;
+
 
 Route::prefix('v1')->group(function () {
     Route::post('/auth/login', [AuthController::class, 'login']);
@@ -43,5 +46,9 @@ Route::prefix('v1')->group(function () {
         Route::get('alarms', [AlarmController::class, 'index']);
         Route::post('alarms/{alarm}/acknowledge', [AlarmController::class, 'acknowledge']);
         Route::post('alarms/{alarm}/resolve', [AlarmController::class, 'resolve']);
+        Route::apiResource('tickets', TicketController::class);
+        Route::post('tickets/{ticket}/devices', [TicketController::class, 'attachDevice']);
+        Route::delete('tickets/{ticket}/devices/{device}', [TicketController::class, 'detachDevice']);
+        Route::apiResource('tickets.comments', TicketCommentController::class)->shallow();
     });
 });
