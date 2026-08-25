@@ -1,12 +1,11 @@
 $kind: http-request
-url: "{{base_url}}/api/v1/alarms?status=open"
-method: GET
+name: Resolve Alarm ID 1
+url: "{{base_url}}/api/v1/alarms/1/resolve"
+method: POST
 headers:
   Accept: application/json
   Authorization: Bearer {{access_token}}
-queryParams:
-  status: open
 body:
   type: json
   content: ""
-order: 51989
+order: 51000

@@ -1,0 +1,17 @@
+$kind: http-request
+name: Update Pengujian Relasi Pivot
+url: "{{base_url}}/api/v1/tickets/1/devices"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"device_id\": 3,\r
+
+    \    \"note\": \"UPDATE: Suhu prosesor aman, kipas sudah dibersihkan.\"\r
+
+    }"
+order: 60000

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable(['body','is_internal'])]
+#[Fillable(['user_id','body','is_internal'])]
 class TicketComment extends Model
 {
     use HasFactory;

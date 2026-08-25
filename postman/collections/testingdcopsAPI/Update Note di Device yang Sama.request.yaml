@@ -1,0 +1,17 @@
+$kind: http-request
+name: Update Note di Device yang Sama
+url: "{{base_url}}/api/v1/tickets/2/comments"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"body\": \"Tim teknisi sedang menuju ke ruang server lantai 1 untuk pengecekan fisik.\",\r
+
+    \    \"is_internal\": false\r
+
+    }"
+order: 64239

@@ -1,0 +1,11 @@
+$kind: http-request
+name: Hapus Satu Device dari Ticket
+url: "{{base_url}}/api/v1/tickets/1/devices/3"
+method: DELETE
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: ""
+order: 64000

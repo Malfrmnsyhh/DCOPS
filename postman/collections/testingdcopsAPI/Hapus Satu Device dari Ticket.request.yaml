@@ -1,6 +1,7 @@
 $kind: http-request
-url: "{{base_url}}/api/v1/device"
-method: POST
+name: Hapus Satu Device dari Ticket
+url: "{{base_url}}/api/v1/tickets/1/devices/3"
+method: DELETE
 headers:
   Accept: application/json
   Authorization: Bearer {{access_token}}
@@ -31,4 +32,4 @@ body:
     \    \"installed_at\": \"2026-08-17\"\r
 
     }"
-order: 58000
+order: 59000

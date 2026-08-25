@@ -1,0 +1,24 @@
+$kind: http-request
+name: Validasi Get device 3
+url: "{{base_url}}/api/v1/tickets/1"
+method: GET
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"title\": \"Koneksi Switch Core Terputus\",\r
+
+    \    \"description\": \"Port uplink di switch core lantai 1 mati
+    tiba-tiba.\",\r
+
+    \    \"priority\": \"high\",\r
+
+    \    \"status\": \"open\",\r
+
+    \    \"category\": \"network\"\r
+
+    }"
+order: 64237
