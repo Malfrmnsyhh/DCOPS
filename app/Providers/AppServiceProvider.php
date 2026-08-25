@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Alarm;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use App\Models\Ticket;
 use App\Observers\TicketObservers;
+use App\Observers\AlarmObservers;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->configureDefaults();
         Ticket::observe(TicketObservers::class);
+        Alarm::observe(AlarmObservers::class);
     }
 
     /**
