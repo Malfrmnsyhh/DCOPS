@@ -12,7 +12,7 @@ class AttachTicketDeviceRequest extends FormRequest
 
     public function rules(): array {
         return [
-            'device_id'=>['required','exists:dc_device,id'],
+            'device_id'=>['required','exists:dc_devices,id'],
             'note'=>['nullable', 'string', 'max:255'],
         ];
     }

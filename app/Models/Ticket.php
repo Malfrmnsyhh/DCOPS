@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable(['alarm_id','rack_id','title','description','category','priority','status','created_at','assigned_to','resolved_at'])]
+#[Fillable(['alarm_id','rack_id','title','description','category','priority','status','created_by','assigned_to','resolved_at'])]
 class Ticket extends Model
 {
     use HasFactory;

@@ -10,6 +10,6 @@ class TicketObservers
         $year = now()->year;
         $sequence = Ticket::whereYear('created_at', $year)->count() + 1;
 
-        $ticket->ticket_number = sprintf('TKT-%d-%05d', $year. $sequence);
+        $ticket->ticket_number = sprintf('TKT-%d-%05d', $year, $sequence);
     }
 }
