@@ -7,8 +7,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ActivityLog extends Model
 {
-    public $timestamps = false;   // kolom created_at di‑handle manual
+    public $timestamps = false;   // kolom created_at di-handle manual
     protected $table = 'activity_logs';
+
+    protected $fillable = [
+        'user_id',
+        'action',
+        'subject_type',
+        'subject_id',
+        'properties',
+    ];
+
+    protected $casts = [
+        'properties' => 'array',
+    ];
 
     public function user(): BelongsTo
     {

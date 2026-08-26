@@ -11,6 +11,11 @@ use Illuminate\Validation\Rules\Password;
 use App\Models\Ticket;
 use App\Observers\TicketObservers;
 use App\Observers\AlarmObservers;
+use App\Models\Device;
+use App\Models\Site;
+use App\Models\Room;
+use App\Models\Rack;
+use App\Observers\ActivityLogObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +35,11 @@ class AppServiceProvider extends ServiceProvider
         $this->configureDefaults();
         Ticket::observe(TicketObservers::class);
         Alarm::observe(AlarmObservers::class);
+        Device::observe(ActivityLogObserver::class);
+        Ticket::observe(ActivityLogObserver::class);
+        Site::observe(ActivityLogObserver::class);
+        Room::observe(ActivityLogObserver::class);
+        Rack::observe(ActivityLogObserver::class);
     }
 
     /**
