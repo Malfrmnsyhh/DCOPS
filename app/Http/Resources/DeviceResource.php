@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\DevicePortResource;
 
 class DeviceResource extends JsonResource
 {
@@ -24,6 +25,7 @@ class DeviceResource extends JsonResource
             'installed_at' => $this->installed_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'ports' => DevicePortResource::collection($this->whenLoaded('ports')),
         ];
     }
 }

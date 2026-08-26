@@ -7,6 +7,8 @@ use App\Http\Requests\StoreDeviceRequest;
 use App\Http\Requests\UpdateDeviceRequest;
 use App\Http\Resources\DeviceResource;
 use App\Models\Device;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 class DeviceController extends Controller
 {
@@ -28,7 +30,28 @@ class DeviceController extends Controller
      */
     public function store(StoreDeviceRequest $request)
     {
-        return new DeviceResource(Device::create($request->validated()));
+        // Bungkus dengan DB::transaction agar proses all-or-nothing
+        $device = DB::transaction(function () use ($request) {
+            $validated = $request->validated();
+            
+            // Pisahkan key 'ports' agar tidak memicu error Mass Assignment di model Device
+            $deviceData = Arr::except($validated, ['ports']);
+            
+            // 1. Buat device terlebih dahulu
+            $device = Device::create($deviceData);
+
+            // 2. Jika ada payload ports, loop dan buat port-nya
+            if (isset($validated['ports']) && is_array($validated['ports'])) {
+                foreach ($validated['ports'] as $port) {
+                    $device->ports()->create($port);
+                }
+            }
+
+            return $device;
+        });
+
+        // Opsional: load relasi ports agar data yang baru dibuat langsung muncul di response API
+        return new DeviceResource($device->load('ports'));
     }
 
     public function show(Device $device)
@@ -57,4 +80,3 @@ class DeviceController extends Controller
         return response()->json(null, 204);
     }
 }
-?>
