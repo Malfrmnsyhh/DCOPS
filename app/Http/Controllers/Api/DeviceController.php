@@ -17,6 +17,15 @@ class DeviceController extends Controller
         );
     }
 
+    /**
+     * Tambah device baru, opsional langsung dipasang ke slot rack.
+     *
+     * Jika `rack_id` dan `position_u` diisi, posisi divalidasi: rentang U yang
+     * dipakai (`position_u` sampai `position_u + u_size - 1`) tidak boleh
+     * melebihi tinggi rack (`u_height`) dan tidak boleh tabrakan dengan
+     * device lain yang sudah terpasang di rack yang sama. Error dikembalikan
+     * pada field `position_u`.
+     */
     public function store(StoreDeviceRequest $request)
     {
         return new DeviceResource(Device::create($request->validated()));
@@ -27,6 +36,13 @@ class DeviceController extends Controller
         return new DeviceResource($device->load('deviceType'));
     }
 
+    /**
+     * Perbarui data device, termasuk posisi rack-nya.
+     *
+     * Aturan slot U sama seperti store(), device ini sendiri dikecualikan
+     * dari pengecekan tabrakan supaya bisa update tanpa harus dilepas dari
+     * rack dulu.
+     */
     public function update(UpdateDeviceRequest $request, Device $device)
     {
         $device->update($request->validated());

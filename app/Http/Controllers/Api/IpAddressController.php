@@ -18,6 +18,13 @@ class IpAddressController extends Controller
         return new IpAddressResource($ipAddress);
     }
 
+    /**
+     * Assign sebuah IP address ke port device.
+     *
+     * IP hanya bisa di-assign kalau statusnya masih "available", dan port
+     * tujuan tidak boleh sudah punya IP lain yang berstatus "assigned" —
+     * harus di-release dulu sebelum assign yang baru.
+     */
     public function assign(AssignIpAddressRequest $request, IpAddress $ipAddress) {
         $ipAddress->update([
             'device_port_id' => $request->device_port_id,

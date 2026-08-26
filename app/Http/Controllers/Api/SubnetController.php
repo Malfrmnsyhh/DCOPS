@@ -15,6 +15,15 @@ class SubnetController extends Controller
         return SubnetResource::collection(Subnet::paginate(15));
     }
 
+    /**
+     * Buat subnet baru dari alamat CIDR.
+     *
+     * CIDR harus berformat valid (mis. 10.10.1.0/24) dengan prefix antara
+     * /24 sampai /30 — subnet lebih besar dari itu ditolak karena kepanjangan
+     * untuk digenerate langsung. Begitu subnet tersimpan, seluruh alamat IP
+     * yang bisa dipakai di dalamnya (network & broadcast address dibuang)
+     * langsung digenerate dan disimpan dengan status "available".
+     */
     public function store(StoreSubnetRequest $request, IpamService $ipamService) {
         $subnet = Subnet::create($request->validated());
 
