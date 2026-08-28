@@ -1,0 +1,23 @@
+$kind: http-request
+name: UpdateRack
+url: "{{base_url}}/api/v1/racks/2"
+method: PUT
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"code\": \"RCK-002\",\r
+
+    \    \"name\": \"Rack Server Utama 2\",\r
+
+    \    \"u_height\": 42,\r
+
+    \    \"max_power_kw\": 5.4,\r
+
+    \    \"status\": \"active\"\r
+
+    }"
+order: 14000

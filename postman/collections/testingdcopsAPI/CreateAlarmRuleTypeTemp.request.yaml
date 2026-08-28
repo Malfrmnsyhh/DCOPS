@@ -1,0 +1,23 @@
+$kind: http-request
+name: CreateAlarmRuleTypeTemp
+url: "{{base_url}}/api/v1/alarm-rule"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"sensor_type\": \"temperature\",\r
+
+    \    \"name\": \"Global Temp Warning\",\r
+
+    \    \"operator\": \">\",\r
+
+    \    \"threshold_max\": 35,\r
+
+    \    \"severity\": \"warning\"\r
+
+    }"
+order: 41000

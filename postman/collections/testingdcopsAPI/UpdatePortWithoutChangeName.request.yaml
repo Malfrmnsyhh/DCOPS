@@ -1,0 +1,24 @@
+$kind: http-request
+name: UpdatePortWithoutChangeName
+url: "{{base_url}}/api/v1/ports/2"
+method: PUT
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+  Content-Type: application/json
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"eth1\",\r
+
+    \    \"type\": \"ethernet\",\r
+
+    \    \"speed_mbps\": 1000,\r
+
+    \    \"mac_address\": \"00:1A:2B:3C:4D:02\",\r
+
+    \    \"status\": \"disabled\"\r
+
+    }"
+order: 19000

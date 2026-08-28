@@ -4,7 +4,6 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Override;
 
 class RackResource extends JsonResource
 {
@@ -23,6 +22,4 @@ class RackResource extends JsonResource
         ];
     }
 }
-
-
 ?>

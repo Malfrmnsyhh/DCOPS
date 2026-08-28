@@ -1,0 +1,24 @@
+$kind: http-request
+name: CreateDevices1Port3
+url: "{{base_url}}/api/v1/devices/1/ports"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+  Content-Type: application/json
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"mgmt\",\r
+
+    \    \"type\": \"ethernet\",\r
+
+    \    \"speed_mbps\": 100,\r
+
+    \    \"mac_address\": \"00:1A:2B:3C:4D:03\",\r
+
+    \    \"status\": \"active\"\r
+
+    }"
+order: 24000

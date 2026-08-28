@@ -1,0 +1,23 @@
+$kind: http-request
+name: DuplicateRacks
+url: "{{base_url}}/api/v1/rooms/1/racks"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"code\": \"RCK-002\",\r
+
+    \    \"name\": \"Rack Server cadangan 1\",\r
+
+    \    \"u_height\": 42,\r
+
+    \    \"max_power_kw\": 3.4,\r
+
+    \    \"status\": \"decommissioned\"\r
+
+    }"
+order: 11000

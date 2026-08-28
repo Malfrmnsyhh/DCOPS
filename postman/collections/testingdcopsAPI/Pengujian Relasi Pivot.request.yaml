@@ -1,0 +1,17 @@
+$kind: http-request
+name: Pengujian Relasi Pivot
+url: "{{base_url}}/api/v1/tickets/2/devices"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"device_id\": 3,\r
+
+    \    \"note\": \"Perlu dicek juga suhu prosesornya.\"\r
+
+    }"
+order: 61000

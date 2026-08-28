@@ -1,0 +1,8 @@
+$kind: http-request
+name: ListSites
+url: "{{base_url}}/api/v1/sites"
+method: GET
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+order: 2000

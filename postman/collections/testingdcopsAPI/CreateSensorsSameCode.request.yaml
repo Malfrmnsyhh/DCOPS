@@ -1,0 +1,23 @@
+$kind: http-request
+name: CreateSensorsSameCode
+url: "{{base_url}}/api/v1/racks/2/sensors"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"code\": \"TEMP-01\",\r
+
+    \    \"name\": \"Sensor Suhu Rack 1\",\r
+
+    \    \"type\": \"temperature\",\r
+
+    \    \"unit\": \"Celsius\",\r
+
+    \    \"status\": \"active\"\r
+
+    }"
+order: 43000

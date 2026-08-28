@@ -1,5 +1,0 @@
-$kind: http-request
-name: auth/me
-url: ""
-method: GET
-order: 2737666930864082

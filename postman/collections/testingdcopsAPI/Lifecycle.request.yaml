@@ -1,0 +1,11 @@
+$kind: http-request
+name: Lifecycle
+url: "{{base_url}}/api/v1/alarms"
+method: GET
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: ""
+order: 55000

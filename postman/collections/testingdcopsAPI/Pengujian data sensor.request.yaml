@@ -1,0 +1,11 @@
+$kind: http-request
+name: Pengujian data sensor
+url: "{{base_url}}/api/v1/sensors/1/readings"
+method: GET
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: ""
+order: 57000

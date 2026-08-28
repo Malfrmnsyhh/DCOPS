@@ -1,0 +1,33 @@
+$kind: http-request
+name: CreateDevice
+url: "{{base_url}}/api/v1/device"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"device_type_id\": 1,\r
+
+    \    \"hostname\": \"srv-standby-01\",\r
+
+    \    \"serial_number\": \"SN-STDBY-001\",\r
+
+    \    \"manufacturer\": \"Dell\",\r
+
+    \    \"model\": \"PowerEdge R740\",\r
+
+    \    \"rack_id\": null,\r
+
+    \    \"position_u\": null,\r
+
+    \    \"u_size\": 2,\r
+
+    \    \"power_watt\": 350,\r
+
+    \    \"status\": \"standby\"\r
+
+    }"
+order: 16000

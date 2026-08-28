@@ -1,0 +1,11 @@
+$kind: http-request
+name: Acknowledge Alarm ID 1
+url: "{{base_url}}/api/v1/alarms/1/acknowledge"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: ""
+order: 53000

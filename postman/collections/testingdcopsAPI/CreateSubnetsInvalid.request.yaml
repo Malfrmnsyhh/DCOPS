@@ -1,0 +1,21 @@
+$kind: http-request
+name: CreateSubnetsInvalid
+url: "{{base_url}}/api/v1/subnets"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Invalid Large Subnet\",\r
+
+    \    \"cidr\": \"10.10.2.0/8\",\r
+
+    \    \"gateway\": \"10.0.0.1\",\r
+
+    \    \"status\": \"active\"\r
+
+    }"
+order: 49000

@@ -1,0 +1,25 @@
+$kind: http-request
+name: CreateAlarmRule
+url: "{{base_url}}/api/v1/alarm-rule"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"sensor_id\": 1,\r
+
+    \    \"name\": \"Critical Temp Rack 1\",\r
+
+    \    \"operator\": \">\",\r
+
+    \    \"threshold_max\": 30,\r
+
+    \    \"severity\": \"critical\",\r
+
+    \    \"is_active\": true\r
+
+    }"
+order: 40000

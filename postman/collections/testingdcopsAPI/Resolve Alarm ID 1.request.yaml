@@ -1,0 +1,11 @@
+$kind: http-request
+name: Resolve Alarm ID 1
+url: "{{base_url}}/api/v1/alarms/1/resolve"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: ""
+order: 51000

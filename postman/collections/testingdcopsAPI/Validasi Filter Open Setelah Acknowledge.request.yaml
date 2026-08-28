@@ -1,0 +1,13 @@
+$kind: http-request
+name: Validasi Filter Open Setelah Acknowledge
+url: "{{base_url}}/api/v1/alarms?status=open"
+method: GET
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+queryParams:
+  status: open
+body:
+  type: json
+  content: ""
+order: 52000

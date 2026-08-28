@@ -15,11 +15,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // 3 user sesuai PRD §6 — satu per role, password default: "password"
+        User::factory()->create([
+            'name'  => 'Admin DCOps',
+            'email' => 'admin@dcops.local',
+            'role'  => 'admin',
+        ]);
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name'  => 'Engineer DCOps',
+            'email' => 'engineer@dcops.local',
+            'role'  => 'engineer',
         ]);
+
+        User::factory()->create([
+            'name'  => 'Viewer DCOps',
+            'email' => 'viewer@dcops.local',
+            'role'  => 'viewer',
+        ]);
+
+        $this->call(DcopsDummySeeder::class);
     }
 }

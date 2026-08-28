@@ -1,0 +1,9 @@
+$kind: http-request
+name: DeletePort
+url: "{{base_url}}/api/v1/ports/5"
+method: DELETE
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+  Content-Type: application/json
+order: 18000

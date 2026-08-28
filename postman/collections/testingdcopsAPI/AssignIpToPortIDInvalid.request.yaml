@@ -1,0 +1,17 @@
+$kind: http-request
+name: AssignIpToPortIDInvalid
+url: "{{base_url}}/api/v1/ip-addresses/11/assign"
+method: POST
+headers:
+  Accept: application/json
+  Authorization: Bearer {{access_token}}
+body:
+  type: json
+  content: "{\r
+
+    \    \"device_port_id\": 1,\r
+
+    \    \"hostname\": \"server-db-01\"\r
+
+    }"
+order: 46000
