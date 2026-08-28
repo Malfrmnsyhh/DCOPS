@@ -10,13 +10,19 @@ use Illuminate\Console\Command;
 
 class GenerateSensorReadings extends Command
 {
-    protected $signature = 'sensors:generate';
+    protected $signature = 'sensors:generate {--backfill= : Isi N readings ke belakang (interval dihitung dari jumlah menit / count). Contoh: --backfill=288 untuk 24 jam @ 5 menit}';
     protected $description = 'Generate reading palsu untuk semua sensor aktif, lalu evaluasi terhadap alarm rule';
 
     public function handle(): int
     {
         $sensors = Sensor::where('status', 'active')->get();
+        $backfill = $this->option('backfill');
 
+        if ($backfill !== null) {
+            return $this->handleBackfill($sensors, (int) $backfill);
+        }
+
+        // Mode normal: satu reading per sensor untuk waktu sekarang
         foreach ($sensors as $sensor) {
             $value = $this->generateValue($sensor->type);
             $now = now();
@@ -24,7 +30,7 @@ class GenerateSensorReadings extends Command
             try {
                 SensorReading::create([
                     'sensor_id' => $sensor->id,
-                    'value' => $value,
+                    'value'     => $value,
                     'recorded_at' => $now,
                 ]);
             } catch (\Illuminate\Database\UniqueConstraintViolationException) {
@@ -33,11 +39,73 @@ class GenerateSensorReadings extends Command
             }
 
             $sensor->update(['last_reading_at' => $now]);
-
             $this->evaluateAlarms($sensor, $value);
         }
 
         $this->info("Reading digenerate untuk {$sensors->count()} sensor.");
+
+        return self::SUCCESS;
+    }
+
+    /**
+     * Isi data historis sejumlah $count titik ke belakang.
+     * Interval antar titik = 24 jam / $count (dalam menit, dibulatkan ke menit penuh).
+     * Contoh: --backfill=288 → 288 titik, interval 5 menit, rentang 24 jam lalu s.d. sekarang.
+     */
+    private function handleBackfill($sensors, int $count): int
+    {
+        if ($count <= 0) {
+            $this->error('--backfill harus berupa bilangan bulat positif.');
+            return self::FAILURE;
+        }
+
+        // Hitung interval: 24 jam (1440 menit) dibagi jumlah titik
+        $intervalMinutes = (int) round(1440 / $count);
+        if ($intervalMinutes < 1) {
+            $intervalMinutes = 1;
+        }
+
+        $this->info("Backfill: {$count} readings per sensor, interval {$intervalMinutes} menit.");
+
+        $bar = $this->output->createProgressBar($sensors->count() * $count);
+        $bar->start();
+
+        $rows = [];
+        $now = now();
+
+        foreach ($sensors as $sensor) {
+            for ($i = $count - 1; $i >= 0; $i--) {
+                $recordedAt = $now->copy()->subMinutes($i * $intervalMinutes);
+                $rows[] = [
+                    'sensor_id'   => $sensor->id,
+                    'value'       => $this->generateValue($sensor->type),
+                    'recorded_at' => $recordedAt->toDateTimeString(),
+                ];
+                $bar->advance();
+            }
+            // Update last_reading_at sensor ke waktu paling baru
+            $sensor->update(['last_reading_at' => $now]);
+        }
+
+        $bar->finish();
+        $this->newLine();
+
+        // Bulk insert per chunk (hindari query terlalu besar)
+        foreach (array_chunk($rows, 500) as $chunk) {
+            SensorReading::insert($chunk);
+        }
+
+        // Evaluasi alarm berdasarkan reading terbaru per sensor
+        foreach ($sensors as $sensor) {
+            $latest = SensorReading::where('sensor_id', $sensor->id)
+                ->orderByDesc('recorded_at')
+                ->value('value');
+            if ($latest !== null) {
+                $this->evaluateAlarms($sensor, (float) $latest);
+            }
+        }
+
+        $this->info("Backfill selesai: " . count($rows) . " readings diinsert.");
 
         return self::SUCCESS;
     }

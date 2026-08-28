@@ -14,6 +14,7 @@ use App\Models\Site;
 use App\Models\Subnet;
 use App\Services\IpamService;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class DcopsDummySeeder extends Seeder
 {
@@ -148,5 +149,11 @@ class DcopsDummySeeder extends Seeder
             'name' => 'Suhu Global Kritis', 'operator' => '>=', 'threshold_max' => 35,
             'severity' => 'critical', 'is_active' => true,
         ]);
+
+        // 9. Isi data historis 24 jam sensor readings (288 titik per sensor, interval 5 menit)
+        //    Sehingga setelah migrate:fresh --seed, endpoint readings dan grafik langsung bisa diuji.
+        $this->command->info('Mengisi data sensor readings 24 jam ke belakang...');
+        Artisan::call('sensors:generate', ['--backfill' => 288]);
+        $this->command->info(Artisan::output());
     }
 }
